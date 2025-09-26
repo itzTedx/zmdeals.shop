@@ -1,0 +1,28 @@
+{
+  "name": "ZM Deals - One Deal Every Week, Big Savings",
+  "short_name": "ZM Deals",
+  "description": "Discover amazing deals on premium products every week. Limited-time offers with exclusive discounts on electronics, home goods, and more.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["shopping", "lifestyle", "business"],
+
+  "shortcuts": [
+    {
+      "name": "View Deals",
+      "short_name": "Deals",
+      "description": "Browse current deals",
+      "url": "/deals"
+    },
+    {
+      "name": "Categories",
+      "short_name": "Categories",
+      "description": "Browse by category",
+      "url": "/categories"
+    }
+  ]
+}
