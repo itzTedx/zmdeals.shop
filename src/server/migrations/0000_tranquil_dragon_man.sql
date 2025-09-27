@@ -37,6 +37,7 @@ CREATE TABLE "users" (
 	"image" text,
 	"stripe_customer_id" text,
 	"is_anonymous" boolean,
+	"last_login_method" text,
 	"role" "roles" DEFAULT 'user',
 	"banned" boolean,
 	"ban_reason" text,

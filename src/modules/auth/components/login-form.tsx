@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -14,7 +15,7 @@ import { LoadingSwap } from "@/components/ui/loading-swap";
 
 import { IconBrandGoogle } from "@/assets/icons";
 
-import { signIn } from "@/lib/auth/client";
+import { getLastUsedLoginMethod, signIn } from "@/lib/auth/client";
 
 import { LoginSchema, loginSchema } from "../schema";
 
@@ -22,6 +23,7 @@ export const LoginForm = () => {
   const [isPending, startTransition] = useTransition();
   const [isGooglePending, startGoogleTransition] = useTransition();
   const router = useRouter();
+  const lastMethod = getLastUsedLoginMethod();
 
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
@@ -92,9 +94,12 @@ export const LoginForm = () => {
               </FormItem>
             )}
           />
-          <Button className="w-full" disabled={isPending} type="submit">
-            <LoadingSwap isLoading={isPending}>Login</LoadingSwap>
-          </Button>
+          <div className="relative">
+            <Button className="w-full" disabled={isPending} type="submit">
+              <LoadingSwap isLoading={isPending}>Login</LoadingSwap>
+            </Button>
+            {lastMethod === "email" && <Badge className="ml-2">Last used</Badge>}
+          </div>
         </form>
       </Form>
       <div className="my-6 grid grid-cols-[1fr_auto_1fr] items-center gap-3">

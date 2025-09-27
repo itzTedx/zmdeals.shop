@@ -17,6 +17,7 @@ export const users = pgTable("users", {
   image: text("image"),
   stripeCustomerId: text("stripe_customer_id"),
   isAnonymous: boolean("is_anonymous"),
+  lastLoginMethod: text("last_login_method"),
   role: rolesEnum("role").default("user"),
   banned: boolean("banned"),
   banReason: text("ban_reason"),

@@ -7,7 +7,7 @@ import { stripe } from "@better-auth/stripe";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
-import { admin as adminPlugin, openAPI } from "better-auth/plugins";
+import { admin as adminPlugin, lastLoginMethod, openAPI } from "better-auth/plugins";
 import { createAccessControl } from "better-auth/plugins/access";
 import { adminAc } from "better-auth/plugins/admin/access";
 
@@ -67,6 +67,12 @@ export const auth = betterAuth({
         admin,
         user,
       },
+    }),
+    lastLoginMethod({
+      storeInDatabase: true,
+      // Cookie configuration
+      cookieName: "zmdeals.last_used_login_method",
+      maxAge: 60 * 60 * 24 * 60,
     }),
     stripe({
       stripeClient,

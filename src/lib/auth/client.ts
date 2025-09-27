@@ -1,5 +1,5 @@
 import { stripeClient } from "@better-auth/stripe/client";
-import { adminClient } from "better-auth/client/plugins";
+import { adminClient, lastLoginMethodClient } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 
 import { env } from "../env/client";
@@ -9,8 +9,11 @@ export const authClient = createAuthClient({
   plugins: [
     stripeClient(),
     adminClient(),
-    // anonymousClient()
+    lastLoginMethodClient({
+      // Cookie configuration
+      cookieName: "zmdeals.last_used_login_method",
+    }),
   ],
 });
 
-export const { signIn, signUp, signOut, useSession } = authClient;
+export const { signIn, signUp, signOut, useSession, getLastUsedLoginMethod } = authClient;

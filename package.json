@@ -25,6 +25,10 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@hookform/resolvers": "^5.2.2",
     "@number-flow/react": "^0.5.10",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-separator": "^1.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tooltip": "^1.2.8",
     "@react-email/components": "^0.5.5",
     "@t3-oss/env-nextjs": "^0.13.8",
     "@tiptap/extension-horizontal-rule": "^3.6.1",
@@ -55,6 +59,7 @@
     "nodemailer": "^7.0.6",
     "nuqs": "^2.6.0",
     "pg": "^8.16.3",
+    "radix-ui": "latest",
     "react": "19.1.0",
     "react-day-picker": "^9.11.0",
     "react-dom": "19.1.0",
@@ -62,8 +67,7 @@
     "sonner": "^2.0.7",
     "stripe": "^18.5.0",
     "tailwind-merge": "^3.3.1",
-    "zod": "^4.1.11",
-    "radix-ui": "latest"
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
