@@ -73,7 +73,7 @@ export const auth = betterAuth({
       stripeWebhookSecret: env.STRIPE_WEBHOOK_SECRET,
       createCustomerOnSignUp: true,
 
-      onEvent: async ({ request, type, data }) => {
+      onEvent: async ({ type }) => {
         console.log(`[Webhook] Processing event: ${type}`, {
           timestamp: new Date().toISOString(),
         });
