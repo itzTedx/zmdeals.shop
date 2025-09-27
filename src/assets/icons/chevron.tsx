@@ -117,6 +117,23 @@ export const IconChevronRight = (props: SvgProps) => {
   );
 };
 
+export const IconChevronDown = (props: SvgProps) => {
+  return (
+    <svg {...props} aria-hidden="true" height="12" viewBox="0 0 12 12" width="12" xmlns="http://www.w3.org/2000/svg">
+      <g fill="currentColor">
+        <polyline
+          fill="none"
+          points="1.75 4.25 6 8.5 10.25 4.25"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.5"
+        />
+      </g>
+    </svg>
+  );
+};
+
 export const IconChevronUpDown = (props: SvgProps) => {
   return (
     <svg {...props} height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">

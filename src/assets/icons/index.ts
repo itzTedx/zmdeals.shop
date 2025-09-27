@@ -2,6 +2,7 @@ export * from "./alert";
 export * from "./arrow";
 export * from "./auth";
 export * from "./bag";
+export * from "./bell";
 export * from "./book";
 export * from "./calendar";
 export * from "./checkbox";

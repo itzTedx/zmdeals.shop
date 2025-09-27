@@ -1,3 +1,4 @@
+import { AppNavbar } from "@/components/layout/navbar/studio/app-navbar";
 import { AppSidebar } from "@/components/layout/sidebar/app-sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
@@ -9,7 +10,10 @@ export default function StudioLayout({ children }: Props) {
   return (
     <SidebarProvider>
       <AppSidebar collapsible="icon" />
-      <SidebarInset>{children}</SidebarInset>
+      <SidebarInset>
+        <AppNavbar />
+        {children}
+      </SidebarInset>
     </SidebarProvider>
   );
 }
