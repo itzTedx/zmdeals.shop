@@ -98,7 +98,7 @@ export const LoginForm = () => {
             <Button className="w-full" disabled={isPending} type="submit">
               <LoadingSwap isLoading={isPending}>Login</LoadingSwap>
             </Button>
-            {lastMethod === "email" && <Badge className="ml-2">Last used</Badge>}
+            {lastMethod === "email" && <LastMethodBadge />}
           </div>
         </form>
       </Form>
@@ -108,12 +108,19 @@ export const LoginForm = () => {
         <hr className="border-dashed" />
       </div>
 
-      <Button className="w-full" onClick={onGoogleSubmit} type="button" variant="outline">
-        <LoadingSwap className="flex items-center gap-2" isLoading={isGooglePending}>
-          <IconBrandGoogle />
-          <span>Google</span>
-        </LoadingSwap>
-      </Button>
+      <div className="relative">
+        <Button className="w-full" onClick={onGoogleSubmit} type="button" variant="outline">
+          <LoadingSwap className="flex items-center gap-2" isLoading={isGooglePending}>
+            <IconBrandGoogle />
+            <span>Google</span>
+          </LoadingSwap>
+        </Button>
+        {lastMethod === "google" && <LastMethodBadge />}
+      </div>
     </>
   );
 };
+
+function LastMethodBadge() {
+  return <Badge className="-translate-y-1/2 absolute right-3 translate-x-1/2 bg-brand-600">Last</Badge>;
+}

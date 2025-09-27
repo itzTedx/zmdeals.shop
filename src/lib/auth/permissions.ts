@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -25,10 +26,10 @@ export async function requireUser() {
   const session = await auth.api.getSession({ headers: await headers() });
 
   if (!session) {
-    redirect("/");
+    redirect("/auth/login");
   }
 
-  return session;
+  return session.user;
 }
 
 export async function hasPermission(
@@ -39,7 +40,7 @@ export async function hasPermission(
 
   const res = await auth.api.userHasPermission({
     body: {
-      role: session?.user.role,
+      role: session?.role,
       permissions,
     },
   });
@@ -49,7 +50,7 @@ export async function hasPermission(
       throw new Error("Unauthorized");
     }
 
-    redirect(redirectTo);
+    redirect(redirectTo as Route);
   }
 
   return { session, res };
@@ -57,8 +58,8 @@ export async function hasPermission(
 
 export async function isAdmin() {
   const session = await requireUser();
-  if (session?.user.role !== "admin") {
-    redirect("/");
+  if (session.role !== "admin") {
+    redirect("/auth/login");
   }
 
   return session;
