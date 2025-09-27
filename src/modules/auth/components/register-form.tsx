@@ -120,7 +120,7 @@ export const RegisterForm = () => {
         <hr className="border-dashed" />
       </div>
 
-      <Button onClick={onGoogleSubmit} type="button" variant="outline">
+      <Button className="w-full" onClick={onGoogleSubmit} type="button" variant="outline">
         <LoadingSwap className="flex items-center gap-2" isLoading={isGooglePending}>
           <IconBrandGoogle />
           <span>Google</span>
