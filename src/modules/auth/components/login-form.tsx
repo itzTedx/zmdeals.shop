@@ -1,7 +1,8 @@
 "use client";
 
 import { useTransition } from "react";
-import { useRouter } from "next/navigation";
+import type { Route } from "next";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -22,8 +23,10 @@ import { LoginSchema, loginSchema } from "../schema";
 export const LoginForm = () => {
   const [isPending, startTransition] = useTransition();
   const [isGooglePending, startGoogleTransition] = useTransition();
+  const searchParams = useSearchParams();
   const router = useRouter();
   const lastMethod = getLastUsedLoginMethod();
+  const redirectTo = searchParams.get("redirect") ?? "/";
 
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
@@ -39,11 +42,11 @@ export const LoginForm = () => {
         {
           email: data.email,
           password: data.password,
-          callbackURL: "/",
+          callbackURL: redirectTo,
         },
         {
           onSuccess: async (_response) => {
-            router.push("/");
+            router.push(redirectTo as Route);
           },
           onError: (error) => {
             toast.error(error.error.message);

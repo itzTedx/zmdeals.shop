@@ -22,11 +22,11 @@ export const user = ac.newRole({
   products: [],
 });
 
-export async function requireUser() {
+export async function requireUser(redirectTo = "/auth/login") {
   const session = await auth.api.getSession({ headers: await headers() });
 
   if (!session) {
-    redirect("/auth/login");
+    redirect(redirectTo as Route);
   }
 
   return session.user;
@@ -56,10 +56,10 @@ export async function hasPermission(
   return { session, res };
 }
 
-export async function isAdmin() {
-  const session = await requireUser();
+export async function isAdmin(redirectTo = "/") {
+  const session = await requireUser(redirectTo);
   if (session.role !== "admin") {
-    redirect("/auth/login");
+    redirect(redirectTo as Route);
   }
 
   return session;

@@ -1,12 +1,23 @@
+import type { Route } from "next";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
 import { LogoIcon } from "@/assets/logo";
 
+import { getSession } from "@/lib/auth/server";
 import { LoginForm } from "@/modules/auth/components/login-form";
 
-export default function LoginPage() {
+interface Props {
+  searchParams: Promise<{ redirect: Route }>;
+}
+
+export default async function LoginPage({ searchParams }: Props) {
+  const { redirect } = await searchParams;
+  const session = await getSession();
+
+  // if (session) redirectTo(redirect ?? "/");
+
   return (
     <section className="flex min-h-screen items-center justify-center">
       <div className="m-auto h-fit w-full max-w-sm overflow-hidden rounded-[calc(var(--radius)+.125rem)] border bg-muted shadow-md shadow-zinc-950/5">
